@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useCallback } from 'react';
 
-const API_BASE = 'http://localhost:8000';
+const API_BASE = 'https://resqmap-backend-o0t5.onrender.com';
 
 // ── State Shape ────────────────────────────────────────────
 const initialState = {

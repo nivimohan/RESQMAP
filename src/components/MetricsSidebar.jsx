@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+const API_BASE = 'https://resqmap-backend-o0t5.onrender.com';
 import { useMap } from '../context/MapContext';
 import { generatePdfDocument } from '../utils/pdfGenerator';
 import {
@@ -291,7 +292,7 @@ export default function MetricsSidebar() {
 
       let brief = null;
       try {
-        const response = await fetch('http://localhost:8000/api/generate-brief', {
+        const response = await fetch(`${API_BASE}/api/generate-brief`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
