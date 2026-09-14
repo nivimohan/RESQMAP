@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+/* ── Cesium Widget CSS ─────────────────────────────────── */
+@import "cesium/Build/Cesium/Widgets/widgets.css";
+
+/* ── Design Tokens ─────────────────────────────────────── */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Base ───────────────────────────────────────────────── */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background: #ffffff;
+  color: #18181b; /* zinc-900 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Cesium Overrides ──────────────────────────────────── */
+/* Hide default Cesium UI chrome — keep geocoder visible */
+.cesium-viewer-animationContainer,
+.cesium-viewer-timelineContainer,
+.cesium-viewer-fullscreenContainer,
+.cesium-viewer-infoBoxContainer,
+.cesium-viewer-selectionIndicatorContainer,
+.cesium-viewer-bottom {
+  display: none !important;
+}
+
+/* Hide toolbar buttons but keep the geocoder */
+.cesium-viewer-toolbar {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  right: auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Hide every toolbar child except the geocoder */
+.cesium-viewer-toolbar > *:not(.cesium-viewer-geocoderContainer) {
+  display: none !important;
+}
+
+.cesium-credit-logoContainer,
+.cesium-credit-expand-link {
+  display: none !important;
+}
+
+.cesium-widget canvas {
+  outline: none;
+}
+
+/* ── Geocoder Custom Style ─────────────────────────────── */
+.cesium-viewer-geocoderContainer {
+  display: block !important;
+}
+
+.cesium-geocoder-input {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 12px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid #e4e4e7 !important;
+  border-radius: 8px !important;
+  color: #18181b !important;
+  padding: 6px 12px 6px 32px !important;
+  width: 220px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08) !important;
+  transition: border-color 0.2s, box-shadow 0.2s, width 0.25s !important;
+}
+
+.cesium-geocoder-input:focus {
+  border-color: #a1a1aa !important;
+  box-shadow: 0 0 0 3px rgba(161,161,170,0.15), 0 1px 3px rgba(0,0,0,0.08) !important;
+  width: 280px !important;
+  outline: none !important;
+}
+
+.cesium-geocoder-input::placeholder {
+  color: #a1a1aa !important;
+}
+
+.cesium-geocoder-searchButton {
+  background: transparent !important;
+  border: none !important;
+  fill: #71717a !important;
+  position: absolute !important;
+  left: 6px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.cesium-geocoder-searchButton:hover {
+  fill: #18181b !important;
+}
+
+/* Geocoder suggestions dropdown */
+.search-results {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 12px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid #e4e4e7 !important;
+  border-radius: 8px !important;
+  margin-top: 4px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10) !important;
+  overflow: hidden !important;
+}
+
+.search-results li {
+  padding: 8px 12px !important;
+  color: #3f3f46 !important;
+  border-bottom: 1px solid #f4f4f5 !important;
+  transition: background 0.15s !important;
+}
+
+.search-results li:hover,
+.search-results li.cesium-geocoder-resultActive {
+  background: #f4f4f5 !important;
+  color: #18181b !important;
+}
+
+.search-results li:last-child {
+  border-bottom: none !important;
+}
+
+/* ── Permanent Static Coordinate HUD (Fixed Bottom-Left) ─ */
+.cesium-static-hud {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(228, 228, 231, 0.9);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  user-select: none;
+}
+
+.cesium-static-hud-icon {
+  width: 14px;
+  height: 14px;
+  color: #71717a;
+}
+
+.cesium-static-hud-coords {
+  font-size: 11.5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 600;
+  color: #18181b;
+  letter-spacing: -0.01em;
+}
+
+.cesium-static-hud-sep {
+  font-size: 11px;
+  color: #d4d4d8;
+}
+
+.cesium-static-hud-elev {
+  font-size: 11px;
+  font-weight: 600;
+  color: #059669;
+  background: #ecfdf5;
+  border: 1px solid #d1fae5;
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8; /* zinc-300 */
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa; /* zinc-400 */
+}
+
+/* ── Utility Animations ────────────────────────────────── */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.35s ease-out both;
+}
