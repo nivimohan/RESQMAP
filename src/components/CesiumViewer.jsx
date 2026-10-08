@@ -135,23 +135,20 @@ export default function CesiumViewer() {
     Cesium.Ion.defaultAccessToken = import.meta.env.VITE_CESIUM_ION_TOKEN || '';
 
     const viewer = new Cesium.Viewer(containerRef.current, {
-      terrain: Cesium.Terrain.fromWorldTerrain({
-        requestVertexNormals: true,
-      }),
-      baseLayerPicker: false,
-      geocoder: true,
-      homeButton: false,
-      sceneModePicker: false,
-      navigationHelpButton: false,
-      animation: false,
-      timeline: false,
-      fullscreenButton: false,
-      infoBox: false,
-      selectionIndicator: false,
-      creditContainer: document.createElement('div'),
-      skyAtmosphere: new Cesium.SkyAtmosphere(),
-      scene3DOnly: true,
-    });
+  baseLayer: new Cesium.ImageryLayer(
+    new Cesium.OpenStreetMapImageryProvider({
+      url: 'https://tile.openstreetmap.org/'
+    })
+  ),
+  geocoder: false,
+  timeline: false,
+  animation: false,
+  baseLayerPicker: false,
+  navigationHelpButton: false,
+  homeButton: false,
+  sceneModePicker: false,
+  fullscreenButton: false,
+});
 
     viewer.scene.globe.enableLighting = true;
 
