@@ -134,11 +134,12 @@ export default function CesiumViewer() {
     Cesium.Ion.defaultAccessToken = import.meta.env.VITE_CESIUM_ION_TOKEN || '';
 
     const viewer = new Cesium.Viewer(containerRef.current, {
-  baseLayer: new Cesium.ImageryLayer(
-    new Cesium.OpenStreetMapImageryProvider({
-      url: 'https://tile.openstreetmap.org/'
-    })
+  // 1. Photorealistic satellite surface using your authenticated Cesium Ion key
+  baseLayer: Cesium.ImageryLayer.fromProviderAsync(
+    Cesium.IonImageryProvider.fromAssetId(2)
   ),
+  // 2. 3D Mountain Elevation / Terrain relief
+  terrain: Cesium.Terrain.fromWorldTerrain(),
   geocoder: false,
   timeline: false,
   animation: false,
