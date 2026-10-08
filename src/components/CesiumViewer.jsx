@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import * as Cesium from 'cesium';
+Cesium.Ion.defaultAccessToken = import.meta.env.VITE_CESIUM_ION_TOKEN;
 import { useMap } from '../context/MapContext';
 import { Compass, Search, X } from 'lucide-react';
 
