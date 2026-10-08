@@ -13,9 +13,8 @@ const RADIUS_M  = RADIUS_KM * 1000;
 // Preset fly-to altitude for district buttons
 const PRESET_FLY_HEIGHT = 35_000;
 
-// CartoDB Voyager labels-only overlay
-const LABEL_TILE_URL =
-  'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}@2x.png';
+// Open labels-only overlay (No API key needed)
+const LABEL_TILE_URL = 'https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}';
 
 // Re-enables full interactive camera control after any flight or lookAt lock.
 // Must be called in every flyTo `complete` callback and after any camera.lookAt().
